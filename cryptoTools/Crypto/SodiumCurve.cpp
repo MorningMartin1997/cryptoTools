@@ -144,7 +144,7 @@ bool Monty25519::operator==(const Monty25519& cmp) const
 Monty25519 operator*(const Scalar25519& a, const Monty25519& b)
 {
     Monty25519 prod;
-    if (crypto_scalarmult_noclamp(prod.data, a.data, b.data) < 0)
+    if (crypto_scalarmult(prod.data, a.data, b.data) < 0)
         throw std::runtime_error(LOCATION);
     return prod;
 }
@@ -152,7 +152,7 @@ Monty25519 operator*(const Scalar25519& a, const Monty25519& b)
 Monty25519 Monty25519::mulGenerator(const Scalar25519& n)
 {
     Monty25519 prod;
-    if (crypto_scalarmult_base_noclamp(prod.data, n.data) < 0)
+    if (crypto_scalarmult_base(prod.data, n.data) < 0)
         throw std::runtime_error(LOCATION);
     return prod;
 }
